@@ -11,7 +11,3 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         super(Application.class);
     }
 }
-
-
-//Billy's comments!
-//Aaron's comments!
