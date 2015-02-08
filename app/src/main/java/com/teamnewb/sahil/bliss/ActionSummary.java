@@ -12,6 +12,11 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import db.TaskCRUD;
+import db.TaskContract;
+
+import static db.TaskContract.*;
+
 
 public class ActionSummary extends Activity {
 
@@ -45,6 +50,12 @@ public class ActionSummary extends Activity {
 
 //        Set the text view as the activity layout
         setContentView(textView);
+
+        //INSERT INTO DATABASE
+        TaskContract.Columns col;
+        col = new TaskContract.Columns(description,type,importance);
+        TaskCRUD crud = new TaskCRUD(this);
+        crud.insert(col);
     }
 
     @Override
