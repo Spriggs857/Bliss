@@ -49,20 +49,14 @@ public class TaskCRUD {
     public ArrayList<Tasks> getData(int m, int y) {
         ArrayList<Tasks> t = new ArrayList<Tasks>();
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        String count = "SELECT count(*) FROM " + TaskContract.TABLE;
-        Cursor mcursor = db.rawQuery(count, null);
-        mcursor.moveToFirst();
-        int icount = mcursor.getInt(0);
-        if(icount == 0)
-        {
-            return null;
-        }
-        else {
+
             String q = "SELECT * FROM " + TaskContract.TABLE + " WHERE " +
                     TaskContract.Columns.DATEMONTH + " = " + m + " AND " + TaskContract.Columns.DATEYEAR + " = " + y + " ORDER BY "
                     + TaskContract.Columns.DATEDAY + " DESC;";
             Cursor c = db.rawQuery(q, null);
             c.moveToFirst();
+        if (c != null)
+        {
             do {
                 String desc = c.getString(0);
                 String type = c.getString(1);
@@ -74,6 +68,10 @@ public class TaskCRUD {
                 t.add(task);
             } while (c.moveToNext());
             return t;
+        }
+        else
+        {
+            return null;
         }
     }
 
