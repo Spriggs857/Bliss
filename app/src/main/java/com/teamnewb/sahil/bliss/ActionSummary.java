@@ -2,15 +2,15 @@ package com.teamnewb.sahil.bliss;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 
 public class ActionSummary extends Activity {
@@ -18,15 +18,33 @@ public class ActionSummary extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_action_summary);
-    }
 
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayShowTitleEnabled(true);
+        DateFormat dateformat = new SimpleDateFormat("EEE, MMM d, ''yy");
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_action_summary, menu);
-        return true;
+        Calendar cal = Calendar.getInstance();
+
+        String date = dateformat.format(cal.getTime());
+        actionBar.setTitle(date);
+
+        // Get the message from the intent
+        Intent intent = getIntent();
+        String description = intent.getStringExtra(ActionForm.DESCRIPTION);
+        String type = intent.getStringExtra(ActionForm.TYPE);
+        int importance = intent.getIntExtra(ActionForm.IMPORTANCE, 100);
+
+        String display = "Event Successfully Added!" + "\n" + "\n" +
+                "Type: " + type + "\n" +
+                "Important?" + " " + importance + "\n" +
+                "Description:" + " " + description;
+//        Create the text view
+        TextView textView = new TextView(this);
+        textView.setTextSize(40);
+        textView.setText(display);
+
+//        Set the text view as the activity layout
+        setContentView(textView);
     }
 
     @Override

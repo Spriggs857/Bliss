@@ -1,25 +1,21 @@
 package com.teamnewb.sahil.bliss;
 
 import android.app.Activity;
-import java.util.Date;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -27,8 +23,6 @@ import android.widget.TextView;
 public class Bliss extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 //allison!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-    public final static String EXTRA_MESSAGE = "com.teamnewb.sahil.Bliss.MESSAGE";
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -41,9 +35,10 @@ public class Bliss extends Activity
     private CharSequence mTitle;
 
     public void addActionClick(MenuItem view) {
-        Intent intent = new Intent(this, ActionSummary.class);
+        Intent intent = new Intent(this, ActionForm.class);
         startActivity(intent);
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
