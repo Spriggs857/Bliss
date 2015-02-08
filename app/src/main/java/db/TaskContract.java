@@ -38,10 +38,11 @@ public class TaskContract {
             type = t;
             imp = i;
             Calendar cal = Calendar.getInstance();
-            year = cal.YEAR;
-            day = cal.DATE;
-            month = cal.MONTH;
+            year = cal.get(Calendar.YEAR);
+            day = cal.get(Calendar.DAY_OF_MONTH);
+            month = Calendar.MONTH;
         }
 
     }
+
 }

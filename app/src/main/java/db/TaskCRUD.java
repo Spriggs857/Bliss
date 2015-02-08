@@ -9,6 +9,7 @@ import java.util.HashMap;
 /**
  * Created by Sahil on 2/7/2015.
  */
+import android.util.Log;
 public class TaskCRUD {
     private TaskDBHelper dbHelper;
 
@@ -22,11 +23,18 @@ public class TaskCRUD {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(TaskContract.Columns.DATEDAY, c.day);
+        Log.d(TaskContract.Columns.DATEDAY, c.day + "");
         values.put(TaskContract.Columns.DATEMONTH, c.month);
+        Log.d(TaskContract.Columns.DATEMONTH, c.month + "");
         values.put(TaskContract.Columns.DATEYEAR, c.year);
+        Log.d(TaskContract.Columns.DATEYEAR, c.year + "");
         values.put(TaskContract.Columns.TASKDESC, c.description);
+        Log.d(TaskContract.Columns.TASKDESC, c.description);
         values.put(TaskContract.Columns.TASKTYPE, c.type);
+        Log.d(TaskContract.Columns.TASKTYPE, c.type);
         values.put(TaskContract.Columns.IMP, c.imp);
+        Log.d(TaskContract.Columns.IMP, c.imp + "");
+
         return true;
     }
 
@@ -43,7 +51,7 @@ public class TaskCRUD {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         String q = "SELECT * FROM " + TaskContract.TABLE + " WHERE " +
                 TaskContract.Columns.DATEMONTH + " = " + m + " AND " + TaskContract.Columns.DATEYEAR + " = " + y + " ORDER BY "
-                + TaskContract.Columns.DATEDAY + " ASC;";
+                + TaskContract.Columns.DATEDAY + " DESC;";
         Cursor c = db.rawQuery(q, null);
         c.moveToFirst();
         do {
