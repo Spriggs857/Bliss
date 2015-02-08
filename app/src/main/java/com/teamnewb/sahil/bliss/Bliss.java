@@ -1,11 +1,15 @@
 package com.teamnewb.sahil.bliss;
 
 import android.app.Activity;
-
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -16,12 +20,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
 public class Bliss extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 //allison!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    public final static String EXTRA_MESSAGE = "com.teamnewb.sahil.Bliss.MESSAGE";
+
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -31,6 +39,11 @@ public class Bliss extends Activity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+
+    public void addActionClick(MenuItem view) {
+        Intent intent = new Intent(this, ActionSummary.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,27 +58,72 @@ public class Bliss extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        DateFormat dateformat = new SimpleDateFormat("MMddyy");
+
+        Calendar cal = Calendar.getInstance();
+
+        String date = dateformat.format(cal.getTime());
+//        int month = cal.MONTH;
+//        int date =cal.DATE;
+//        int year  = cal.YEAR;
+//        String combinationDate = ""+ month +" " +  date +" "+ year;
+        TextView textElement = (TextView) findViewById(R.id.this_is_id_name);
+        textElement.setText(date);
+
     }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+
+
+        Calendar cal = Calendar.getInstance();
+        int month = cal.MONTH;
+
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                .replace(R.id.container, PlaceholderFragment.newInstance(month))
                 .commit();
     }
 
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(R.string.title_section1);
+                mTitle = "January";
                 break;
             case 2:
-                mTitle = getString(R.string.title_section2);
+                mTitle = "February";
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
+                mTitle ="March";
+                break;
+            case 4:
+                mTitle ="April";
+                break;
+            case 5:
+                mTitle = "May";
+                break;
+            case 6:
+                mTitle = "June";
+                break;
+            case 7:
+                mTitle = "July";
+                break;
+            case 8:
+                mTitle = "August";
+                break;
+            case 9:
+                mTitle = "September";
+                break;
+            case 10:
+                mTitle = "October";
+                break;
+            case 11:
+                mTitle = "November";
+                break;
+            case 12:
+                mTitle = "December";
                 break;
         }
     }

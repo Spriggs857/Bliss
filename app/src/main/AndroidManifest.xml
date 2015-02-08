@@ -16,6 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ActionSummary"
+            android:label="@string/title_activity_action_summary"
+            android:parentActivityName=".Bliss" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.teamnewb.sahil.bliss.Bliss" />
+        </activity>
     </application>
 
 </manifest>
