@@ -59,6 +59,7 @@ public class Bliss extends Activity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
@@ -69,13 +70,40 @@ public class Bliss extends Activity
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(R.string.title_section1);
+                mTitle = "January";
                 break;
             case 2:
-                mTitle = getString(R.string.title_section2);
+                mTitle = "February";
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
+                mTitle ="March";
+                break;
+            case 4:
+                mTitle ="April";
+                break;
+            case 5:
+                mTitle = "May";
+                break;
+            case 6:
+                mTitle = "June";
+                break;
+            case 7:
+                mTitle = "July";
+                break;
+            case 8:
+                mTitle = "August";
+                break;
+            case 9:
+                mTitle = "September";
+                break;
+            case 10:
+                mTitle = "October";
+                break;
+            case 11:
+                mTitle = "November";
+                break;
+            case 12:
+                mTitle = "December";
                 break;
         }
     }
