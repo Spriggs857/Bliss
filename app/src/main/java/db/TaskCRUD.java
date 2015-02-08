@@ -23,17 +23,11 @@ public class TaskCRUD {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(TaskContract.Columns.DATEDAY, c.day);
-        Log.d(TaskContract.Columns.DATEDAY, c.day + "");
         values.put(TaskContract.Columns.DATEMONTH, c.month);
-        Log.d(TaskContract.Columns.DATEMONTH, c.month + "");
         values.put(TaskContract.Columns.DATEYEAR, c.year);
-        Log.d(TaskContract.Columns.DATEYEAR, c.year + "");
         values.put(TaskContract.Columns.TASKDESC, c.description);
-        Log.d(TaskContract.Columns.TASKDESC, c.description);
         values.put(TaskContract.Columns.TASKTYPE, c.type);
-        Log.d(TaskContract.Columns.TASKTYPE, c.type);
         values.put(TaskContract.Columns.IMP, c.im);
-        Log.d(TaskContract.Columns.IMP, c.im + "");
 
         return true;
     }
