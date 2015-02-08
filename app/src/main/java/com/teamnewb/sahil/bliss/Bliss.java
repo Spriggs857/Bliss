@@ -58,6 +58,19 @@ public class Bliss extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        DateFormat dateformat = new SimpleDateFormat("MMddyy");
+
+        Calendar cal = Calendar.getInstance();
+
+        String date = dateformat.format(cal.getTime());
+//        int month = cal.MONTH;
+//        int date =cal.DATE;
+//        int year  = cal.YEAR;
+//        String combinationDate = ""+ month +" " +  date +" "+ year;
+        TextView textElement = (TextView) findViewById(R.id.this_is_id_name);
+        textElement.setText(date);
+
     }
 
     @Override
