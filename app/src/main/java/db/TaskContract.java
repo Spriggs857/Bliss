@@ -31,12 +31,12 @@ public class TaskContract {
         public int year;
         public int month;
         public int day;
-        public int imp; //0 = not important, else 1
+        public int im; //0 = not important, else 1
 
         public Columns(String d, String t, int i) {
             description = d;
             type = t;
-            imp = i;
+            im = i;
             Calendar cal = Calendar.getInstance();
             year = cal.get(Calendar.YEAR);
             day = cal.get(Calendar.DAY_OF_MONTH);
