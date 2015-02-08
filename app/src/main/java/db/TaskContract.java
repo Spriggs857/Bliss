@@ -6,9 +6,14 @@
  */
 package db; // Make sure this matches your apps package
 
+        import android.database.Cursor;
+        import android.database.sqlite.SQLiteDatabase;
+        import android.database.sqlite.SQLiteOpenHelper;
         import android.provider.BaseColumns;
+        import android.util.Log;
 
         import java.util.Calendar;
+
 
 public class TaskContract {
     public static final String DB_NAME = "com.teamnewb.sahil.db.tasks";
@@ -18,12 +23,12 @@ public class TaskContract {
 
 
     public static class Columns {
-        public static final String TASKDESC = "taskdesc"; //TODO: get task description input here and other inputs as well
-        public static final String DATEMONTH = "month";
-        public static final String DATEDAY = "day";
-        public static final String DATEYEAR = "year";
-        public static final String TASKTYPE = "tasktype";
-        public static final String IMP = "imp";
+        public static final String KEY_TASKDESC = "com.teamnewb.sahil.TaskContract.TASKDESC";
+        public static final String KEY_DATEMONTH = "com.teamnewb.sahil.TaskContract.MONTH";
+        public static final String KEY_DATEDAY = "com.teamnewb.sahil.TaskContract.DAY";
+        public static final String KEY_DATEYEAR = "com.teamnewb.sahil.TaskContract.YEAR";
+        public static final String KEY_TASKTYPE = "com.teamnewb.sahil.TaskContract.TYPE";
+        public static final String KEY_IMP = "com.teamnewb.sahil.TaskContract.IMP";
 
         //Variables used to transfer/store data
         public String description;

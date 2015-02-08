@@ -29,6 +29,8 @@ public class Bliss extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 //allison!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+    public static boolean addEventYet = false;
+
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -72,17 +74,7 @@ public class Bliss extends Activity
 //        TextView textElement = (TextView) findViewById(R.id.this_is_id_name);
 //        textElement.setText(date);
 
-        TaskCRUD tmp = new TaskCRUD(this);
-        Calendar cal = Calendar.getInstance();
-        ArrayList<Tasks> tasks = tmp.getData(Calendar.MONTH,cal.get(Calendar.YEAR));
         String display = "Title";
-        try {
-            for (int i = 0; i < tasks.size(); i++)
-                display = "\n" + tasks.get(i).getDesc();
-        } catch(NullPointerException e) {
-            display = "Empty";
-        }
-
         TextView textView = (TextView) findViewById(R.id.action_list);
         textView.setTextSize(15);
         textView.setText(display);
@@ -146,22 +138,31 @@ public class Bliss extends Activity
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
 
-        TaskCRUD tmp = new TaskCRUD(this);
+        TaskCRUD tmp = new TaskCRUD(getApplicationContext());
         Calendar cal = Calendar.getInstance();
-        ArrayList<Tasks> tasks = tmp.getData(Calendar.MONTH,cal.get(Calendar.YEAR));
-        String display = "Title";
-        try {
-            Log.d("Db is empty?","No");
+        ArrayList<Tasks> tasks = null;
+
+        if (addEventYet) {
+            tasks = tmp.getData(Calendar.MONTH, cal.get(Calendar.YEAR));
+            Log.d("addEventYet", "true");
+        } else {
+            Log.d("addEventYet", "false");
+        }
+
+        String display = "UPDATE title";
+        if (tasks != null )
+        {
+            Log.d("Db is empty?", "No");
             for (int i = 0; i < tasks.size(); i++)
                 display = "\n" + tasks.get(i).getDesc();
-        } catch(NullPointerException e) {
-            display = "Empty";
+        } else {
             Log.d("Db is empty?", "Yes");
+            display = "EMPTY";
         }
 
         TextView textView = (TextView) findViewById(R.id.action_list);
         textView.setTextSize(15);
-        textView.setText("CHANGED");
+        textView.setText(display);
     }
 
 

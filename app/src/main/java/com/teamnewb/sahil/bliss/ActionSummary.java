@@ -3,7 +3,11 @@ package com.teamnewb.sahil.bliss;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -14,6 +18,7 @@ import java.util.Calendar;
 
 import db.TaskCRUD;
 import db.TaskContract;
+import db.TaskDBHelper;
 
 import static db.TaskContract.*;
 
@@ -54,8 +59,16 @@ public class ActionSummary extends Activity {
         //INSERT INTO DATABASE
         TaskContract.Columns col;
         col = new TaskContract.Columns(description,type,importance);
-        TaskCRUD crud = new TaskCRUD(this);
+        TaskCRUD crud = new TaskCRUD(getApplicationContext());
         crud.insert(col);
+        Bliss.addEventYet = true;
+
+
+        SQLiteOpenHelper dbHelper = new TaskDBHelper(getApplicationContext());
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String q = "SELECT * FROM " + TaskContract.TABLE;
+        Cursor c = db.rawQuery(q, null);
+        Log.d("Insert # of rows ACTIONSUMMARY:", String.valueOf(c.getCount()));
     }
 
     @Override

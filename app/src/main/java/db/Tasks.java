@@ -8,7 +8,7 @@ public class Tasks {
     public int day, month, year, imp;
     public String desc, type;
 
-    public Tasks(int d, int m, int y, int i, String de, String t)
+    public Tasks(String de, String t, int y, int m, int d, int i)
     {
         day = d;
         month = m;

@@ -17,13 +17,14 @@ public class TaskDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqlDB) {
-        String sqlQuery ="CREATE TABLE " + TaskContract.TABLE + "(" + TaskContract.Columns.TASKDESC + "TEXT, "
-                        + TaskContract.Columns.TASKTYPE + "TEXT, " + TaskContract.Columns.DATEYEAR + "INTEGER, " +
-                        TaskContract.Columns.DATEMONTH + "INTEGER, " + TaskContract.Columns.DATEDAY + "INTEGER, "
-                        + TaskContract.Columns.IMP + "INTEGER )";
+//        String sqlQuery ="CREATE TABLE " + TaskContract.TABLE + "(" + TaskContract.Columns.KEY_TASKDESC + "TEXT, "
+//                        + TaskContract.Columns.KEY_TASKTYPE + "TEXT, " + TaskContract.Columns.KEY_DATEYEAR + "INTEGER, " +
+//                        TaskContract.Columns.KEY_DATEMONTH + "INTEGER, " + TaskContract.Columns.KEY_DATEDAY + "INTEGER, "
+//                        + TaskContract.Columns.KEY_IMP + "INTEGER )";
 
+        String sqlQuery = String.format("CREATE TABLE %s (" + "%s TEXT)", TaskContract.TABLE, TaskContract.Columns.KEY_TASKDESC);
 
-        Log.d("TaskDBHelper", "Query to form table: " + sqlQuery);
+//        Log.d("TaskDBHelper", "Query to form? table: " + sqlQuery);
         sqlDB.execSQL(sqlQuery);
     }
 
