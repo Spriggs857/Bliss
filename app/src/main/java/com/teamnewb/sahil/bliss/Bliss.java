@@ -73,7 +73,7 @@ public class Bliss extends Activity
 
 
         Calendar cal = Calendar.getInstance();
-        int month = position + 1;
+        int month = cal.MONTH;
 
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
