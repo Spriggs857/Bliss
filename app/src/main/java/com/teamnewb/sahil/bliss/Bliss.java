@@ -1,7 +1,10 @@
 package com.teamnewb.sahil.bliss;
 
 import android.app.Activity;
-
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -60,10 +63,14 @@ public class Bliss extends Activity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
 
+
+        Calendar cal = Calendar.getInstance();
+        int month = cal.MONTH;
+
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                .replace(R.id.container, PlaceholderFragment.newInstance(month))
                 .commit();
     }
 
