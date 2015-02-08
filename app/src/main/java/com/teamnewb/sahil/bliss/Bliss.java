@@ -4,12 +4,14 @@ import android.app.Activity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +20,9 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import db.TaskCRUD;
+import db.Tasks;
 
 
 public class Bliss extends Activity
@@ -43,6 +48,7 @@ public class Bliss extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_bliss);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
@@ -54,18 +60,32 @@ public class Bliss extends Activity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-        DateFormat dateformat = new SimpleDateFormat("MMddyy");
+//        DateFormat dateformat = new SimpleDateFormat("MMddyy");
+//
+//        Calendar cal = Calendar.getInstance();
+//
+//        String date = dateformat.format(cal.getTime());
+////        int month = cal.MONTH;
+////        int date =cal.DATE;
+////        int year  = cal.YEAR;
+////        String combinationDate = ""+ month +" " +  date +" "+ year;
+//        TextView textElement = (TextView) findViewById(R.id.this_is_id_name);
+//        textElement.setText(date);
 
+        TaskCRUD tmp = new TaskCRUD(this);
         Calendar cal = Calendar.getInstance();
+        ArrayList<Tasks> tasks = tmp.getData(Calendar.MONTH,cal.get(Calendar.YEAR));
+        String display = "Title";
+        try {
+            for (int i = 0; i < tasks.size(); i++)
+                display = "\n" + tasks.get(i).getDesc();
+        } catch(NullPointerException e) {
+            display = "Empty";
+        }
 
-        String date = dateformat.format(cal.getTime());
-//        int month = cal.MONTH;
-//        int date =cal.DATE;
-//        int year  = cal.YEAR;
-//        String combinationDate = ""+ month +" " +  date +" "+ year;
-        TextView textElement = (TextView) findViewById(R.id.this_is_id_name);
-        textElement.setText(date);
-
+        TextView textView = (TextView) findViewById(R.id.action_list);
+        textView.setTextSize(15);
+        textView.setText(display);
     }
 
     @Override
@@ -125,6 +145,23 @@ public class Bliss extends Activity
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
+
+        TaskCRUD tmp = new TaskCRUD(this);
+        Calendar cal = Calendar.getInstance();
+        ArrayList<Tasks> tasks = tmp.getData(Calendar.MONTH,cal.get(Calendar.YEAR));
+        String display = "Title";
+        try {
+            Log.d("Db is empty?","No");
+            for (int i = 0; i < tasks.size(); i++)
+                display = "\n" + tasks.get(i).getDesc();
+        } catch(NullPointerException e) {
+            display = "Empty";
+            Log.d("Db is empty?", "Yes");
+        }
+
+        TextView textView = (TextView) findViewById(R.id.action_list);
+        textView.setTextSize(15);
+        textView.setText("CHANGED");
     }
 
 
