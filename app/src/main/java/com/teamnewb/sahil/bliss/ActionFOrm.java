@@ -34,7 +34,7 @@ public class ActionForm extends Activity {
         int importanceId = radioImport.getCheckedRadioButtonId();
         RadioButton radioImportButton = (RadioButton) findViewById(importanceId);
         int importance = 0;
-        if ("Important".equals((String) radioImportButton.getText())){
+        if ("Important".equals(radioImportButton.getText())){
             importance = 1;
         }
         intent.putExtra(IMPORTANCE,importance);
