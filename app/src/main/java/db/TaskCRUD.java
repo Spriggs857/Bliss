@@ -32,8 +32,8 @@ public class TaskCRUD {
         Log.d(TaskContract.Columns.TASKDESC, c.description);
         values.put(TaskContract.Columns.TASKTYPE, c.type);
         Log.d(TaskContract.Columns.TASKTYPE, c.type);
-        values.put(TaskContract.Columns.IMP, c.imp);
-        Log.d(TaskContract.Columns.IMP, c.imp + "");
+        values.put(TaskContract.Columns.IMP, c.im);
+        Log.d(TaskContract.Columns.IMP, c.im + "");
 
         return true;
     }
