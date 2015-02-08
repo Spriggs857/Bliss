@@ -34,7 +34,7 @@ public class TaskCRUD {
         Log.d(TaskContract.Columns.TASKTYPE, c.type);
         values.put(TaskContract.Columns.IMP, c.im);
         Log.d(TaskContract.Columns.IMP, c.im + "");
-
+        db.insertWithOnConflict(TaskContract.TABLE,null,values,SQLiteDatabase.CONFLICT_IGNORE);
         return true;
     }
 
